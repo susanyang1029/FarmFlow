@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Management - FarmFlow</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Resource Management for {{ crop.name }}</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/add_crop">Add Crop</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Log Resources</h2>
+        <form action="/resource_management/{{ index }}" method="POST">
+            <label for="water_usage">Water Usage (liters):</label>
+            <input type="text" id="water_usage" name="water_usage"><br><br>
+
+            <label for="fertilizer_usage">Fertilizer Usage (kg):</label>
+            <input type="text" id="fertilizer_usage" name="fertilizer_usage"><br><br>
+
+            <label for="soil_health">Soil Health (rating 1-10):</label>
+            <input type="text" id="soil_health" name="soil_health"><br><br>
+
+            <button type="submit">Save Resource Data</button>
+        </form>
+
+        <h3>Previous Resource Logs:</h3>
+        <ul>
+            {% if crop.resources %}
+                {% for resource in crop.resources %}
+                    <li>
+                        Water: {{ resource.water }} L, 
+                        Fertilizer: {{ resource.fertilizer }} kg, 
+                        Soil Health: {{ resource.soil }}
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li>No resource data available.</li>
+            {% endif %}
+        </ul>
+    </main>
+
+    <footer>
+        <p>FarmFlow &copy; 2025</p>
+    </footer>
+</body>
+</html>

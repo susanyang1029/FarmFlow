@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Equipment</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Farm Equipment Log</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/equipment">Equipment Log</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Log Equipment Usage</h2>
+
+        <form method="POST" action="/equipment">
+            <label for="equipment_name">Equipment Name:</label>
+            <input type="text" name="equipment_name" id="equipment_name" required>
+        
+            <label for="usage_date">Usage Date:</label>
+            <input type="date" name="usage_date" id="usage_date" required>
+        
+            <label for="next_maintenance">Next Maintenance Date:</label>
+            <input type="date" name="next_maintenance" id="next_maintenance" required>
+        
+            <button type="submit">Log Equipment</button>
+        </form>
+
+        <h2>Equipment Log</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Equipment Name</th>
+                    <th>Usage Date</th>
+                    <th>Next Maintenance</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in equipment_logs %}
+                    <tr>
+                        <td>{{ log.name }}</td>
+                        <td>{{ log.usage_date }}</td>
+                        <td>{{ log.maintenance_date }}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <!-- Make sure the action points to the correct URL with the equipment ID -->
+                                <form method="GET" action="/edit_equipment/{{ log.id }}">
+                                    <button type="submit">Edit</button>
+                                </form>
+                                <form method="POST" action="/delete_equipment/{{ log.id }}" onsubmit="return confirm('Are you sure you want to delete this equipment?');">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>FarmFlow &copy; 2025</p>
+    </footer>
+</body>
+</html>

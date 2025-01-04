@@ -1,0 +1,64 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Equipment</title>
+</head>
+<body>
+    <h1>Edit Equipment</h1>
+    <form method="POST" action="/edit_equipment/{{ equipment.id }}">
+        <label for="equipment_name">Equipment Name:</label>
+        <input type="text" name="equipment_name" id="equipment_name" value="{{ equipment.name }}" required>
+
+        <label for="usage_date">Usage Date:</label>
+        <input type="date" name="usage_date" id="usage_date" value="{{ equipment.usage_date }}" required>
+
+        <label for="next_maintenance">Next Maintenance Date:</label>
+        <input type="date" name="next_maintenance" id="next_maintenance" value="{{ equipment.maintenance_date }}" required>
+
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Equipment</title>
+</head>
+<body>
+    <header>
+        <h1>Edit Equipment</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/equipment">Equipment Log</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Edit Equipment Information</h2>
+        <form method="POST">
+            <label for="name">Equipment Name:</label>
+            <input type="text" name="name" id="name" value="{{ equipment.name }}" required>
+
+            <label for="usage_date">Usage Date:</label>
+            <input type="date" name="usage_date" id="usage_date" value="{{ equipment.usage_date }}" required>
+
+            <label for="maintenance_date">Next Maintenance Date:</label>
+            <input type="date" name="maintenance_date" id="maintenance_date" value="{{ equipment.maintenance_date }}" required>
+
+            <button type="submit">Save Changes</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>FarmFlow &copy; 2025</p>
+    </footer>
+</body>
+</html>

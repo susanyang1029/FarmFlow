@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Health - FarmFlow</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Crop Health for {{ crop.name }}</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/add_crop">Add Crop</a></li>
+            <li><a href="/crop_health/{{ index }}">View Crop Health</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Track Your Crop's Health</h2>
+
+        <form action="/crop_health/{{ index }}" method="POST">
+            <label for="health_status">Health Status:</label>
+            <input type="text" id="health_status" name="health_status" value="{{ crop.health['status'] if crop.health else '' }}"><br><br>
+
+            <label for="pest_issues">Pest Issues:</label>
+            <input type="text" id="pest_issues" name="pest_issues" value="{{ crop.health['pests'] if crop.health else '' }}"><br><br>
+
+            <label for="growth_stage">Growth Stage:</label>
+            <input type="text" id="growth_stage" name="growth_stage" value="{{ crop.health['growth_stage'] if crop.health else '' }}"><br><br>
+
+            <label for="notes">Notes/Observations:</label>
+            <textarea id="notes" name="notes">{{ crop.health['notes'] if crop.health else '' }}</textarea><br><br>
+
+            <button type="submit">Save Health Information</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>FarmFlow &copy; 2025</p>
+    </footer>
+</body>
+</html>

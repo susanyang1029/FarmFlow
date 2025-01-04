@@ -1,0 +1,108 @@
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    color: #333;
+}
+
+a {
+    display: inline-block;
+    margin: 10px 0;
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin: 5px 0;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 300px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+} */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+nav {
+    background-color: #333;
+    color: white;
+    padding: 0.5rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+} */
+
+/* Adjust footer size */
+footer {
+    font-size: 12px;  /* Reduce the font size */
+    padding: 10px 0;  /* Add padding above and below text */
+    text-align: center;  /* Center the footer content */
+    position: relative;  /* Allow other content to flow above it */
+    bottom: 0;  /* Make sure footer stays at the bottom */
+    width: 100%;  /* Ensure footer takes up full width */
+}
+
+/* Adjust the margin of the main content to give space between footer and content */
+main {
+    margin-bottom: 80px;  /* Space for footer */
+}

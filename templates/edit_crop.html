@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Crop - FarmFlow</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Edit Crop</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/add_crop">Add Crop</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Update Crop Information</h2>
+        <form action="/edit_crop/{{ crop_index }}" method="POST">
+            <label for="crop_name">Crop Name:</label>
+            <input type="text" id="crop_name" name="crop_name" value="{{ crop.name }}" required><br><br>
+
+            <label for="planting_date">Planting Date:</label>
+            <input type="date" id="planting_date" name="planting_date" value="{{ crop.date }}" required><br><br>
+
+            <button type="submit">Save Changes</button>
+        </form>
+        <a href="/">Back to Home</a>
+    </main>
+
+    <footer>
+        <p>FarmFlow &copy; 2025</p>
+    </footer>
+</body>
+</html>

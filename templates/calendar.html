@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harvest Calendar</title>
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Harvest Calendar</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/add_crop">Add Crop</a></li>
+            <li><a href="/calendar">Harvest Calendar</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div id="calendar"></div>
+    </main>
+
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    
+    <!-- Pass Crops Data from Backend -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // The crops variable will be passed from Flask as a JSON object
+            var crops = {{ crops | tojson }};
+            console.log("Crops data:", crops);
+
+            // Map crops to FullCalendar event objects
+            var events = crops.map(crop => ({
+                title: crop.name + " Harvest", // Event title (e.g., crop name)
+                start: crop.harvest_date       // Event start date (e.g., harvest date)
+            }));
+
+            // Initialize FullCalendar
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth', // Default view (month grid)
+                events: events               // Add events dynamically
+            });
+
+            // Render the calendar
+            calendar.render();
+        });
+    </script>
+</body>
+</html>

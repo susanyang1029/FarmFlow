@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmFlow - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to FarmFlow!</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/add_crop">Add Crop</a></li>
+            <li><a href="/financial_tracker">Financial Tracker</a></li>
+            <li><a href="/calendar">Harvest Calendar</a></li>
+            <li><a href="/equipment">Farm Equipment Log</a></li>
+            <li><a href="/sustainability_tracker">Sustainability Tracker</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Your Crop Dashboard</h2>
+        <p>Track crop health, weather, and harvest dates!</p>
+
+        <!-- Location Input Form For Weather -->
+        <h3>Enter Location for Weather Forecast:</h3>
+        <form method="POST" action="/">
+            <label for="location">Location (City Name):</label>
+            <input type="text" id="location" name="location" required>
+            <button type="submit">Get Weather</button>
+        </form>
+        
+        <h3>Current Weather:</h3>
+        {% if weather %}
+            <p>Location: {{ weather.location }}</p>
+            <p>Temperature: {{ weather.temperature }}°C</p>
+            <p>Humidity: {{ weather.humidity }}%</p>
+            <p>Condition: {{ weather.description }}</p>
+        {% else %}
+            <p>Unable to fetch weather data.</p>
+        {% endif %}
+
+
+        <!-- Display list of crops -->
+        <h3>Your Crops:</h3>
+        <a href="/?sort=asc">Sort by Date (Ascending)</a> | 
+        <a href="/?sort=desc">Sort by Date (Descending)</a>
+        <ul>
+            {% if crops %}
+                {% for crop in crops %}
+                    <li>
+                        {{ crop.name }} - Planting Date: {{ crop.date }}
+                        <!-- Use loop.index0 to pass the index -->
+                        <a href="/edit_crop/{{ loop.index0 }}">Edit</a> | 
+                        <a href="/delete_crop/{{ loop.index0 }}" onclick="return confirm('Are you sure you want to delete this crop?')">Delete</a> |
+                        <a href="/crop_health/{{ loop.index0 }}">Monitor Health</a> | 
+                        <a href="/resource_management/{{ loop.index0 }}">Track Resources</a> |
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li>No crops added yet.</li>
+            {% endif %}
+        </ul>
+    </main>
+
+    <footer>
+        <p>FarmFlow &copy; 2025</p>
+    </footer>
+</body>
+</html>
